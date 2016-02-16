@@ -1,0 +1,4 @@
+address,cidr,start_date,end_date,reporter,comment,bugid
+{% for b in blacklists %}
+{{ b.offender.address }},{{ b.offender.cidr }},{{ b.start_date }},{{ b.end_date }},{{ b.reporter }},{{b.comment}},{{b.bug_number}}
+{% endfor %}

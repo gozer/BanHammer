@@ -56,10 +56,20 @@ def index(request):
         'show_expired': show_expired,
     }
 
+    format = request.GET.get('format', 'html')
+
+    if format == 'text':
+        template = 'blacklist/index.txt'
+        template_mimetype = 'text/plain'
+    else:
+        template = 'blacklist/index.html'
+        template_mimetype = 'text/html'
+
     return render_to_response(
-        'blacklist/index.html',
+        template,
         {'blacklists': blacklists, 'form': form, 'data': data },
-        context_instance = RequestContext(request)
+        context_instance = RequestContext(request),
+        mimetype = template_mimetype
     )
 
 # view for creating new blacklists
